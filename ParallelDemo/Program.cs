@@ -36,8 +36,23 @@ namespace ParallelDemo
                     Console.WriteLine("\n{0}) {1}", selectedSample.Id, selectedSample.Name);
                     ConsoleUtil.PrintSeparatorLine();
 
-                    const int threads = 5;
-                    const int iterations = 10;
+                    // Get threads
+                    int threads;
+                    do
+                    {
+                        Console.Write($"Enter threads number (More than 0): ");
+                        line = Console.ReadLine();
+
+                    } while (!int.TryParse(line, out threads) || threads < 1);
+
+                    // Get iterations
+                    int iterations;
+                    do
+                    {
+                        Console.Write("Enter iterations number (More than 0): ");
+                        line = Console.ReadLine();
+
+                    } while (!int.TryParse(line, out iterations) || iterations < 1);
 
                     ConsoleUtil.PrintLine("\nStarting sample ...\n", ConsoleColor.Blue);
 
