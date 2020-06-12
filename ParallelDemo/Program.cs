@@ -40,10 +40,10 @@ namespace ParallelDemo
                     int threads;
                     do
                     {
-                        Console.Write($"Enter threads number (More than 0): ");
+                        Console.Write($"Enter threads number (Between 1 and {Environment.ProcessorCount}): ");
                         line = Console.ReadLine();
 
-                    } while (!int.TryParse(line, out threads) || threads < 1);
+                    } while (!int.TryParse(line, out threads) || threads < 1 || threads > Environment.ProcessorCount);
 
                     // Get iterations
                     int iterations;
