@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 
 namespace ParallelDemo.Samples
 {
@@ -9,7 +10,20 @@ namespace ParallelDemo.Samples
 
         public void Run(int threads, int iterations)
         {
-            throw new NotImplementedException();
+            var rnd = new Random();
+
+            for (var i = 0; i < iterations; i++)
+            {
+                var delay = rnd.Next(1000, 10000);
+
+                ConsoleUtil.PrintLine($"START \t\t iteration {i} \t\t Thread {Thread.CurrentThread.ManagedThreadId} \t\t Delay {delay}", ConsoleColor.Green);
+
+                Thread.Sleep(delay);
+
+                ConsoleUtil.PrintLine($"END \t\t iteration {i} \t\t Thread {Thread.CurrentThread.ManagedThreadId}", ConsoleColor.Red);
+            }
+
+            ConsoleUtil.PrintLine("\nAll iterations completed successfully", ConsoleColor.Green);
         }
     }
 }
