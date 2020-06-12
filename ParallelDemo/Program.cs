@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Linq;
 
 namespace ParallelDemo
@@ -10,6 +11,8 @@ namespace ParallelDemo
             ConsoleUtil.PrintSeparatorLine();
             Console.WriteLine("Welcome to Parallel Demo");
             ConsoleUtil.PrintSeparatorLine();
+
+            var stopwatch = new Stopwatch();
 
             // Get samples
             var samples = SampleUtil.GetSamples().OrderBy(sample => sample.Id).ToList();
@@ -56,8 +59,17 @@ namespace ParallelDemo
 
                     ConsoleUtil.PrintLine("\nStarting sample ...\n", ConsoleColor.Blue);
 
+                    // Start watch
+                    stopwatch.Restart();
+
                     // Run sample
                     selectedSample.Run(threads, iterations);
+
+                    // Stop watch
+                    stopwatch.Stop();
+
+                    // Print sample time
+                    ConsoleUtil.PrintLine($"\nFinished sample in {stopwatch.ElapsedMilliseconds} milliseconds", ConsoleColor.Blue);
                 }
                 catch (Exception e)
                 {
