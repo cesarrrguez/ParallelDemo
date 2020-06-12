@@ -5,12 +5,17 @@ namespace ParallelDemo
 {
     internal static class ConsoleUtil
     {
+        private static readonly object LockObject = new object();
+
         internal static void PrintLine(string line, ConsoleColor color = ConsoleColor.White, ConsoleColor background = ConsoleColor.Black)
         {
-            Console.ForegroundColor = color;
-            Console.BackgroundColor = background;
-            Console.WriteLine(line);
-            Console.ResetColor();
+            lock (LockObject)
+            {
+                Console.ForegroundColor = color;
+                Console.BackgroundColor = background;
+                Console.WriteLine(line);
+                Console.ResetColor();
+            }
         }
 
         internal static void PrintSeparatorLine(char separator = '-', int count = 40)
