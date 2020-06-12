@@ -50,6 +50,7 @@
     <Compile Include="Samples\BreakParallelSample.cs" />
     <Compile Include="Samples\CancelParallelSample.cs" />
     <Compile Include="Samples\ParallelSample.cs" />
+    <Compile Include="Samples\ResultParallelSample.cs" />
     <Compile Include="Samples\SequentialSample.cs" />
     <Compile Include="SampleUtil.cs" />
   </ItemGroup>
